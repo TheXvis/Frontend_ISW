@@ -6,7 +6,6 @@ function withAuth(Component) {
 
 
     if (!token) {
-      // Muestra un mensaje de error si el usuario no está autenticado
       return <div>Error: No estás autenticado</div>;
     }else{
       return <Component {...props} />;

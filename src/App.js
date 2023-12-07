@@ -2,7 +2,6 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/login.jsx';
-import BackToHomeButton from './components/home.jsx';
 import AdminPage from './pages/adminPage.jsx';
 import AsPage from './pages/asPage.jsx';
 import UserPage from './pages/userPage.jsx';
@@ -13,7 +12,6 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <BackToHomeButton />
           <h1 className='titulo'>Asistencia Social UBB</h1>
           <Routes>
             <Route path="/" element={<Login/>} />

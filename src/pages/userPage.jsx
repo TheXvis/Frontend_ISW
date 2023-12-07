@@ -1,8 +1,12 @@
+import BackToHomeButton from "../components/home";
+import SolicitarAsistencia from "../components/solAsistencia";
+
 function UserPage() {
     return (
         <div>
+            <BackToHomeButton/>
             <h1>Página de usuario</h1>
-            {/* Aquí puedes añadir más contenido para la página de usuario */}
+            <SolicitarAsistencia/>
         </div>
     );
 }

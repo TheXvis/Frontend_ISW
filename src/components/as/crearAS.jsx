@@ -10,7 +10,6 @@ function CreateAsistenteSocial() {
   const [direccion, setDireccion] = useState('');
   const [comuna, setComuna] = useState('');
   const [region, setRegion] = useState('');
-  const [showForm, setShowForm] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,8 +41,6 @@ function CreateAsistenteSocial() {
   
   return (
     <div>
-      <button onClick={() => setShowForm(!showForm)}> {showForm ? 'Ocultar formulario' : 'Mostrar formulario'}</button>
-      {showForm && (
     <form onSubmit={handleSubmit}>
       <input type="text" value={id} onChange={(e) => setId(e.target.value)} placeholder="ID" required />
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" required />
@@ -55,7 +52,6 @@ function CreateAsistenteSocial() {
       <input type="text" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="Región" required />
       <button type="submit">Crear Asistente Social</button>
     </form>
-    )}
     </div>
   );
 }

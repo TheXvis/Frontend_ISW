@@ -1,3 +1,4 @@
+import BackToHomeButton from '../components/home';
 import UserSearch from '../components/userSearch';
 import withAuth from '../components/withAuth';
 import React from 'react';
@@ -5,6 +6,7 @@ import React from 'react';
 function AsPage() {
     return (
         <div>
+            <BackToHomeButton/>
             <h1>Página de asistente social</h1>
             <UserSearch/>
         </div>
