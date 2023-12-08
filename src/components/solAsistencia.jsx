@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function SolicitarAsistencia() {
@@ -6,6 +6,14 @@ function SolicitarAsistencia() {
     const [asistentesSociales, setAsistentesSociales] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [comunas, setComunas] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:80/comunas')
+            .then(response => response.json())
+            .then(data => setComunas(data))
+            .catch(error => console.error('Error:', error));
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -44,7 +52,13 @@ function SolicitarAsistencia() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Ingrese comuna" value={comuna} onChange={(e) => setComuna(e.target.value)} />
+            <select value={comuna} onChange={(e) => setComuna(e.target.value)}>
+                    {comunas.map((comuna, index) => (
+                        <option key={index} value={comuna}>
+                            {comuna}
+                        </option>
+                    ))}
+                </select>
                 <button type="submit">Buscar asistentes</button>
             </form>
             {asistentesSociales.length > 0 && (
