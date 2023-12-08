@@ -29,6 +29,10 @@ function SolicitarAsistencia() {
         }
     };
 
+    function handleEmailClick(asistente) {
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${asistente.correo}`, '_blank', 'width=600,height=600');
+    }
+
     if (loading) {
         return <div>Cargando...</div>;
     }
@@ -40,21 +44,39 @@ function SolicitarAsistencia() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-
-                <input type="text" placeholder="Ingrese comuna"value={comuna} onChange={(e) => setComuna(e.target.value)} />
-
+                <input type="text" placeholder="Ingrese comuna" value={comuna} onChange={(e) => setComuna(e.target.value)} />
                 <button type="submit">Buscar asistentes</button>
             </form>
-
-        {asistentesSociales.length > 0 && (
-        <div>
-            <h2>Asistentes sociales disponibles:</h2>
-            {asistentesSociales.map((asistente, index) => {
-            console.log(asistente);
-            return <p key={index}>{asistente.name}</p>;
-            })}
-        </div>
-    )   }
+            {asistentesSociales.length > 0 && (
+                <div>
+                    <h2>Asistentes sociales disponibles:</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {asistentesSociales.map((asistente, index) => {
+                                console.log(asistente);
+                                return (
+                                    <tr key={index}>
+                                        <td>{asistente.name}</td>
+                                        <td>{asistente.correo}</td>
+                                        <td>{asistente.telefono}</td>
+                                        <td>
+                                        <button onClick={() => handleEmailClick(asistente)}>Enviar correo</button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 }
