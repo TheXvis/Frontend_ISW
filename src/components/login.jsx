@@ -29,9 +29,9 @@ function Login() {
           }
       
           const data = await response.json();
-          // Guardar el token y userType en localStorage
           localStorage.removeItem('token');
           localStorage.setItem('token', data.token);
+          localStorage.setItem('userId', _id); 
           console.log(userType)
           navigate(`/${userType}`);
         } catch (error) {

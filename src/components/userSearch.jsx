@@ -41,11 +41,13 @@ function UserSearch() {
         console.error('Error al desasignar el asistente social', error);
         }
     };
-    
+    const token = localStorage.getItem('token');
     const handleAssign = async () => {
         try {
-            const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:80/as/as-to-user', { userId: user._id }, {
+
+            const response = await axios.post('http://localhost:80/as/as-to-user', {
+                userId: user._id
+            }, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -56,6 +58,9 @@ function UserSearch() {
                 alert('Asistente social asignado con éxito');
             } else {
                 console.error('Error al asignar el asistente social:', response.data.message);
+                if (response.data.message === 'El asistente social y el usuario no están en la misma comuna') {
+                    alert('El asistente social y el usuario no están en la misma comuna');
+                }
             }
         } catch (error) {
             console.error('Error al hacer la solicitud:', error);
@@ -66,11 +71,12 @@ function UserSearch() {
     return (
         <div>
         <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
-        <button onClick={handleSearch}>Buscar</button>
+        <button onClick={handleSearch}>Buscar usuario</button>
 
         {user && (
             <div>
                 <p>Usuario: {user.name}</p>
+                <p>Comuna: {user.comuna}</p>
                 <p>Asistente Social: {user.asAsignado ? user.asAsignado.nombre : "Ninguno"}</p>
                 {!user.asAsignado && <button onClick={handleAssign}>Asignar</button>}
                 <button onClick={handleUnassign}>Desasignar</button>
