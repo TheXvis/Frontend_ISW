@@ -9,14 +9,14 @@ function Login() {
     const navigate = useNavigate();
     const [_id, set_id] = useState('');
     const [password, setPassword] = useState('');
-    const [userType, setUserType] = useState('admin');
+    const [userType] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
       
         try {
-          const response = await fetch(`http://localhost:80/${userType}/login`, {
+          const response = await fetch(`http://localhost:80/login`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -30,15 +30,15 @@ function Login() {
       
           const data = await response.json();
           localStorage.removeItem('token');
+          localStorage.removeItem('userType'); 
           localStorage.setItem('token', data.token);
           localStorage.setItem('userId', _id); 
-          console.log(userType)
-          navigate(`/${userType}`);
+          localStorage.setItem('userType', data.userType);
+          navigate(`/${data.userType}`);
         } catch (error) {
           console.error('Error:', error);
         }
       };
-
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
@@ -50,11 +50,6 @@ function Login() {
 
     return (
         <form className="login-form" onSubmit={handleSubmit}>
-            <select value={userType} onChange={e => setUserType(e.target.value)}>
-                <option value="admin">Administrador</option>
-                <option value="user">Usuario</option>
-                <option value="as">Asistente social</option>
-            </select>
             <input className="login-input" value={_id} onChange={e => set_id(e.target.value)} placeholder="Rut" />
             <input className="login-input" type={showPassword ? 'text' : 'password'} value={password} onChange={handlePasswordChange} placeholder="Contraseña"  />
             <button type="button" onClick={toggleShowPassword}>{showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}</button>
