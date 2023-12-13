@@ -20,13 +20,14 @@ function DeleteAsistenteSocial() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                ID del asistente social:
-                <input type="text" value={id} onChange={(e) => setId(e.target.value)} required />
-            </label>
-            <button type="submit">Eliminar asistente social</button>
-        </form>
+        <div className="container mt-4">
+            <div className="input-group mb-3">
+                <input type="text" className="form-control" value={id} onChange={(e) => setId(e.target.value)} placeholder="Ingrese el rut" required />
+                <div className="input-group mb-3 d-flex justify-content-center align-items-center">
+                    <button style={{marginTop:"10px"}}className="btn btn-primary" type="submit" onClick={handleSubmit}>Eliminar asistente social</button>
+                </div>
+            </div>
+        </div>
     );
 }
 

@@ -57,44 +57,43 @@ function EditAsistenteSocial() {
     };
 
     return (
-        <div>
-            <input type="text" value={id} onChange={(e) => setId(e.target.value)} required />
-            <button onClick={handleSearch}>Buscar asistente social</button>
-            {asistenteSocial && (
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Nombre:
-                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                    </label>
-                    <label>
-                        Contraseña:
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    </label>
-                    <label>
-                        Teléfono:
-                        <input type="text" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
-                    </label>
-                    <label>
-                        Correo:
-                        <input type="text" value={correo} onChange={(e) => setCorreo(e.target.value)} />
-                    </label>
-                    <label>
-                        Dirección:
-                        <input type="text" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
-                    </label>
-                    <label>
-                        Comuna:
-                        <input type="text" value={comuna} onChange={(e) => setComuna(e.target.value)} />
-                    </label>
-                    <label>
-                        Región:
-                        <input type="text" value={region} onChange={(e) => setRegion(e.target.value)} />
-                    </label>
-                    <button type="submit">Actualizar asistente social</button>
-                </form>
-            )}
+        <div className="container mt-4">
+          <div className="input-group mb-3">
+            <input type="text" className="form-control" value={id} onChange={(e) => setId(e.target.value)} placeholder="Ingrese el rut" required />
+            <div className="input-group mb-3 d-flex justify-content-center align-items-center">
+              <button style={{marginTop:"10px"}}className="btn btn-primary" type="button" onClick={handleSearch}>Buscar asistente social</button>
+            </div>
+          </div>
+          {asistenteSocial && (
+            <div style={{ backgroundColor: '#eee', padding: '15px', borderRadius: '15px'}}>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group mb-2">
+                  <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" required />
+                </div>
+                <div className="form-group mb-2">
+                  <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required />
+                </div>
+                <div className="form-group mb-2">
+                  <input type="text" className="form-control" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Teléfono" required />
+                </div>
+                <div className="form-group mb-2">
+                  <input type="email" className="form-control" value={correo} onChange={(e) => setCorreo(e.target.value)} placeholder="Correo" required />
+                </div>
+                <div className="form-group mb-2">
+                  <input type="text" className="form-control" value={direccion} onChange={(e) => setDireccion(e.target.value)} placeholder="Dirección" required />
+                </div>
+                <div className="form-group mb-2">
+                  <input type="text" className="form-control" value={comuna} onChange={(e) => setComuna(e.target.value)} placeholder="Comuna" required />
+                </div>
+                <div className="form-group mb-2">
+                  <input type="text" className="form-control" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="Región" required />
+                </div>
+                <button type="submit" className="btn btn-primary">Actualizar asistente social</button>
+              </form>
+            </div>
+          )}
         </div>
-    );
+      );
 }
 
 export default EditAsistenteSocial;

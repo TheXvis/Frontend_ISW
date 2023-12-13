@@ -40,18 +40,36 @@ function CreateAsistenteSocial() {
   
   
   return (
-    <div>
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={id} onChange={(e) => setId(e.target.value)} placeholder="ID" required />
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" required />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required />
-      <input type="text" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Teléfono" required />
-      <input type="email" value={correo} onChange={(e) => setCorreo(e.target.value)} placeholder="Correo" required />
-      <input type="text" value={direccion} onChange={(e) => setDireccion(e.target.value)} placeholder="Dirección" required />
-      <input type="text" value={comuna} onChange={(e) => setComuna(e.target.value)} placeholder="Comuna" required />
-      <input type="text" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="Región" required />
-      <button type="submit">Crear Asistente Social</button>
-    </form>
+    <div className="container mt-4">
+    <div style={{ backgroundColor: '#eee', padding: '15px', borderRadius: '15px'}}>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group mb-2">
+          <input type="text" className="form-control" value={id} onChange={(e) => setId(e.target.value)} placeholder="Rut" required />
+        </div>
+        <div className="form-group mb-2">
+          <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre" required />
+        </div>
+        <div className="form-group mb-2">
+          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" required />
+        </div>
+        <div className="form-group mb-2">
+          <input type="text" className="form-control" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Teléfono" required />
+        </div>
+        <div className="form-group mb-2">
+          <input type="email" className="form-control" value={correo} onChange={(e) => setCorreo(e.target.value)} placeholder="Correo" required />
+        </div>
+        <div className="form-group mb-2">
+          <input type="text" className="form-control" value={direccion} onChange={(e) => setDireccion(e.target.value)} placeholder="Dirección" required />
+        </div>
+        <div className="form-group mb-2">
+          <input type="text" className="form-control" value={comuna} onChange={(e) => setComuna(e.target.value)} placeholder="Comuna" required />
+        </div>
+        <div className="form-group mb-2">
+          <input type="text" className="form-control" value={region} onChange={(e) => setRegion(e.target.value)} placeholder="Región" required />
+        </div>
+        <button type="submit" className="btn btn-primary">Crear Asistente Social</button>
+      </form>
+    </div>
     </div>
   );
 }

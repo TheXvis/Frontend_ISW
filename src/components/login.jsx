@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Login() {
 
@@ -45,15 +46,26 @@ function Login() {
       const toggleShowPassword = () => {
         setShowPassword(!showPassword);
       };
+      
+      return (
+        <div className="container" style={{marginTop:"20px"}}>
+          <div className="row justify-content-center">
+            <div className="col-md-3">
+              <div className="card" style={{ backgroundColor: '#eee' }}>
 
-    return (
-        <form className="login-form" onSubmit={handleSubmit}>
-            <input className="login-input" value={_id} onChange={e => set_id(e.target.value)} placeholder="Rut" />
-            <input className="login-input" type={showPassword ? 'text' : 'password'} value={password} onChange={handlePasswordChange} placeholder="Contraseña"  />
-            <button type="button" onClick={toggleShowPassword}>{showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}</button>
-            <input type="submit" className="login-submit" value="Login" />
-        </form>
-    );
+                <div className="card-body">
+                  <form className="form-group" onSubmit={handleSubmit}>
+                    <input id="rut" className="form-control" value={_id} onChange={e => set_id(e.target.value)} placeholder="Ingrese su rut" />
+                    <input id="password" className="form-control" type={showPassword ? 'text' : 'password'} value={password} onChange={handlePasswordChange} placeholder="Ingrese su contraseña" style={{marginTop:"10px"}} />
+                    <button type="button" className="btn btn-link" onClick={toggleShowPassword}>{showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}</button>
+                    <input type="submit" style={{marginLeft:"20px", marginTop:"20px"}}className="btn btn-primary mt" value="Login" />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
 }
 
 export default Login;

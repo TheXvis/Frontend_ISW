@@ -20,21 +20,44 @@ function VerAsistenteSocial() {
     };
 
     return (
-        <div>
-            <input type="text" value={id} onChange={(e) => setId(e.target.value)} required />
-            <button onClick={handleSearch}>Ver asistente social</button>
-            {asistenteSocial && (
-                <div>
-                    <p>Nombre: {asistenteSocial.name}</p>
-                    <p>Correo: {asistenteSocial.correo}</p>
-                    <p>Telefono: {asistenteSocial.telefono}</p>
-                    <p>Dirección: {asistenteSocial.direccion}</p>
-                    <p>Comuna: {asistenteSocial.comuna}</p>
-                    <p>Región: {asistenteSocial.region}</p>
-                </div>
-            )}
+        <div className="container mt-5" >
+          <input type="text" className="form-control" value={id} onChange={(e) => setId(e.target.value)} placeholder="Ingrese el rut" required />
+          <div className="mt-2">
+            <button className="btn btn-primary" type="button" onClick={handleSearch}>Ver asistente social</button>
+          </div>
+
+          {asistenteSocial && (
+            <table className="table mt-4">
+              <tbody>
+                <tr>
+                  <th>Nombre</th>
+                  <td>{asistenteSocial.name}</td>
+                </tr>
+                <tr>
+                  <th>Correo</th>
+                  <td>{asistenteSocial.correo}</td>
+                </tr>
+                <tr>
+                  <th>Telefono</th>
+                  <td>{asistenteSocial.telefono}</td>
+                </tr>
+                <tr>
+                  <th>Dirección</th>
+                  <td>{asistenteSocial.direccion}</td>
+                </tr>
+                <tr>
+                  <th>Comuna</th>
+                  <td>{asistenteSocial.comuna}</td>
+                </tr>
+                <tr>
+                  <th>Región</th>
+                  <td>{asistenteSocial.region}</td>
+                </tr>
+              </tbody>
+            </table>
+          )}
         </div>
-    );
+      );
 }
 
 export default VerAsistenteSocial;
