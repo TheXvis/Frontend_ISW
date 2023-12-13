@@ -3,13 +3,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
-
 function Login() {
 
     const navigate = useNavigate();
     const [_id, set_id] = useState('');
     const [password, setPassword] = useState('');
-    const [userType] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (event) => {

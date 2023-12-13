@@ -5,6 +5,8 @@ function BackToHomeButton() {
 
     const handleClick = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userType');
         navigate('/');
     };
 

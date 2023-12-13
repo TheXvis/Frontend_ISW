@@ -29,7 +29,6 @@ function SolicitarAsistencia() {
             });
         
             setAsistentesSociales(response.data.asistenteSocial);
-            console.log(response.data.asistenteSocial); // Add this line
             setLoading(false);
         } catch (error) {
             setError(error.message);
