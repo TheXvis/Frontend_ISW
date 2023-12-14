@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Dropdown } from 'react-bootstrap';
 
 function SolicitarAsistencia() {
     const [comuna, setComuna] = useState('');
@@ -7,6 +8,7 @@ function SolicitarAsistencia() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [comunas, setComunas] = useState([]);
+    
 
     useEffect(() => {
         fetch('http://localhost:80/comunas')
@@ -50,20 +52,29 @@ function SolicitarAsistencia() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-            <select value={comuna} onChange={(e) => setComuna(e.target.value)}>
+        <p>Selecciona tu comuna:</p>
+        <form onSubmit={handleSubmit}>
+            <Dropdown onSelect={(value) => setComuna(value)}>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    {comuna || "Seleccione una comuna"}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
                     {comunas.map((comuna, index) => (
-                        <option key={index} value={comuna}>
+                        <Dropdown.Item key={index} eventKey={comuna}>
                             {comuna}
-                        </option>
+                        </Dropdown.Item>
                     ))}
-                </select>
-                <button type="submit">Buscar asistentes</button>
+                </Dropdown.Menu>
+            </Dropdown>
+                <div className="input-group mb-3 d-flex justify-content-center align-items-center">
+                <button style={{marginTop:"10px"}}className="btn btn-primary" type="submit">Buscar asistentes</button>
+                </div>
             </form>
             {asistentesSociales.length > 0 && (
                 <div>
                     <h2>Asistentes sociales disponibles:</h2>
-                    <table>
+                    <table className="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -81,7 +92,7 @@ function SolicitarAsistencia() {
                                         <td>{asistente.correo}</td>
                                         <td>{asistente.telefono}</td>
                                         <td>
-                                        <button onClick={() => handleEmailClick(asistente)}>Enviar correo</button>
+                                            <button className="btn btn-primary" onClick={() => handleEmailClick(asistente)}>Enviar correo</button>
                                         </td>
                                     </tr>
                                 );

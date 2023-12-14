@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Swal from 'sweetalert2';
 
 function Login() {
 
@@ -35,7 +36,11 @@ function Login() {
           localStorage.setItem('userType', data.userType);
           navigate(`/${data.userType}`);
         } catch (error) {
-          console.error('Error:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Crendenciales incorrectas',
+          });
         }
       };
 

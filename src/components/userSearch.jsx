@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 
 function UserSearch() {
     const [userId, setUserId] = useState('');
@@ -18,7 +18,10 @@ function UserSearch() {
         setLoading(false);
         } catch (error) {
         if (error.response && error.response.status === 404) {
-            alert('Usuario no encontrado');
+            Swal.fire({
+                icon: 'error',
+                title: 'Usuario no encontrado',
+              });
         } else {
             setError(error.message);
         }
@@ -41,7 +44,9 @@ function UserSearch() {
         console.error('Error al desasignar el asistente social', error);
         }
     };
+
     const token = localStorage.getItem('token');
+
     const handleAssign = async () => {
         try {
 
@@ -55,7 +60,10 @@ function UserSearch() {
     
             if (response.data.message === 'Asignacion exitosa') {
                 setUser(response.data.user);
-                alert('Asistente social asignado con éxito');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Asignacion exitosa',
+                })
             } else {
                 console.error('Error al asignar el asistente social:', response.data.message);
                 if (response.data.message === 'El asistente social y el usuario no están en la misma comuna') {
@@ -70,18 +78,36 @@ function UserSearch() {
 
     return (
         <div>
-        <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
-        <button onClick={handleSearch}>Buscar usuario</button>
+        <input placeholder="Ingrese el rut" className="form-control" type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
+        <div className="input-group mb-3 d-flex justify-content-center align-items-center">
+        <button style={{marginTop:"10px"}} className="btn btn-primary" onClick={handleSearch}>Buscar usuario</button>
+        </div>
 
         {user && (
-            <div>
-                <p>Usuario: {user.name}</p>
-                <p>Comuna: {user.comuna}</p>
-                <p>Asistente Social: {user.asAsignado ? user.asAsignado.nombre : "Ninguno"}</p>
-                {!user.asAsignado && <button onClick={handleAssign}>Asignar</button>}
-                <button onClick={handleUnassign}>Desasignar</button>
-            </div>
-        )}
+    <table className="table table-striped table-hover">
+        <tbody>
+            <tr>
+                <th>Usuario</th>
+                <td>{user.name}</td>
+            </tr>
+            <tr>
+                <th>Comuna</th>
+                <td>{user.comuna}</td>
+            </tr>
+            <tr>
+                <th>Asistente Social</th>
+                <td>{user.asAsignado ? user.asAsignado.nombre : "Ninguno"}</td>
+            </tr>
+            <tr>
+                <th>Acciones</th>
+                <td>
+                    {!user.asAsignado && <button className="btn btn-primary" onClick={handleAssign}>Asignar</button>}
+                    <button className="btn btn-danger" onClick={handleUnassign}>Desasignar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+)}
         </div>
     );
 }

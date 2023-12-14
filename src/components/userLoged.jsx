@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Card } from 'react-bootstrap';
 
 function UserLoggedIn() {
     const [user, setUser] = useState(null);
@@ -27,12 +28,17 @@ function UserLoggedIn() {
     }
 
     return (
-        <div>
-            <h2>Usuario logueado</h2>
-            <p>Nombre: {user.name}</p>
-            <p>Comuna: {user.comuna}</p>
-        </div>
+        <Card >
+            <Card.Body>
+                <Card.Title>Usuario logueado</Card.Title>
+                <Card.Text>
+                    <p>Nombre: {user.name}</p>
+                    <p>Comuna: {user.comuna}</p>
+                </Card.Text>
+            </Card.Body>
+        </Card>
     );
+    
 }
 
 export default UserLoggedIn;

@@ -8,9 +8,11 @@ function AsPage() {
     return (
         <div>
             <BackToHomeButton/>
-            <UserLoggedIn/>
             <h1>Página de asistente social</h1>
+            <UserLoggedIn/>
+            <div style={{marginTop:"10px"}}>
             <UserSearch/>
+            </div>
         </div>
     );
 }

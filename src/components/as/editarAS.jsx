@@ -61,7 +61,7 @@ function EditAsistenteSocial() {
           <div className="input-group mb-3">
             <input type="text" className="form-control" value={id} onChange={(e) => setId(e.target.value)} placeholder="Ingrese el rut" required />
             <div className="input-group mb-3 d-flex justify-content-center align-items-center">
-              <button style={{marginTop:"10px"}}className="btn btn-primary" type="button" onClick={handleSearch}>Buscar asistente social</button>
+              <button style={{marginTop:"10px"}} className="btn btn-primary" type="button" onClick={handleSearch}>Buscar asistente social</button>
             </div>
           </div>
           {asistenteSocial && (
