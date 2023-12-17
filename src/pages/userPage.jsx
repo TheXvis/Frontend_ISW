@@ -13,4 +13,4 @@ function UserPage() {
     );
 }
 
-export default withAuth(UserPage);
+export default withAuth(UserPage, 'user');
